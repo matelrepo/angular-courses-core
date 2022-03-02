@@ -12,4 +12,16 @@ export class PassengerDashboardService{
   getPassengers(): Observable<Passenger[]>{
     return this.http.get<Passenger[]>(PASSENGER_API);
   }
+
+  getPassenger(id: number){
+    return this.http.get<Passenger>(`${PASSENGER_API}/${id}`)
+  }
+
+  updatePassenger(passenger: Passenger): Observable<Passenger>{
+    return this.http.put<Passenger>(`${PASSENGER_API}/${passenger.id}`, passenger);
+  }
+
+  removePassenger(passenger: Passenger): Observable<Passenger>{
+    return this.http.delete<Passenger>(`${PASSENGER_API}/${passenger.id}`);
+  }
 }
